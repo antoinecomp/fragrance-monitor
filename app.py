@@ -17,12 +17,12 @@ app.layout = html.Div(
         dcc.Tabs(
             [
                 dcc.Tab(
-                    label='Similarité description/commentaires',
+                    label='Similarité description produits/commentaires',
                     value='Similarity',
                     children=similarity.layout()
                 ),
                 dcc.Tab(
-                    label='Distribution des attributs dans les description & commentaires',
+                    label='Distribution des attributs dans les descriptions & commentaires',
                     value='Attributes',
                     children=attributes.layout()
                 ),
