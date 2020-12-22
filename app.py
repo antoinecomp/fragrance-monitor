@@ -11,18 +11,18 @@ app.layout = html.Div(
         # empty Div to trigger javascript file for graph resizing
         html.Div(id="output-clientside"),
 
-        # Header 
+        # Header
         header.layout(),
 
         dcc.Tabs(
             [
                 dcc.Tab(
-                    label='Similarity',
+                    label='Similarité description/commentaires',
                     value='Similarity',
                     children=similarity.layout()
                 ),
                 dcc.Tab(
-                    label='Attributes analysis',
+                    label='Distribution des attributs dans les description & commentaires',
                     value='Attributes',
                     children=attributes.layout()
                 ),
