@@ -11,7 +11,7 @@ app.layout = html.Div(
         # empty Div to trigger javascript file for graph resizing
         html.Div(id="output-clientside"),
 
-        # Header
+        # Header 
         header.layout(),
 
         dcc.Tabs(
