@@ -31,13 +31,7 @@ df = get_data()
 
 def layout():
     return html.Div([
-        # html.H1(children='Scores of perfumes over claimed attributes'),
         html.Div(id='test', children=''),
-        # dcc.Dropdown(
-        #     id='perfume-dropdown',
-        #     options=[{'label': x, 'value': x} for x in df.index.unique()],
-        #     value='My Burberry - Eau de Parfum'
-        # ),
         html.Div(id='dd-output-container-similarity'),
         html.Div([
             dcc.Graph(id='graph-similarity')
@@ -55,16 +49,23 @@ def update_graph(my_dropdown):
     for i in range(len(dfc)):
         if not np.isnan(dfc.iloc[i].values[0]):
             trace = go.Bar(x=[dfc.iloc[i].name], y=[dfc.iloc[i].values[0]], name=df.iloc[i].name)
-            # trace_perceived = go.Bar(x=[dfc.iloc[i].values[0]], y=[-dfc.iloc[i].values[1]], name='Perceived')
             traces.append(trace)
-            # traces.append(trace_perceived)
-    figure={
-        'data': traces,
-        'layout':
-            go.Layout(title='Score de similarité des descriptions avec leurs commentaires', barmode='stack')
-    }
+
+    layout = go.Layout(
+        yaxis=dict(
+            range = [.8, .95],
+            showgrid=False,
+            ticks='',
+            showticklabels=False,
+        )
+    )
+
+    figure = go.Figure(data=traces,
+                       layout=layout
+                       )
     
     return figure
+
 
 @app.callback(
     Output('click-data', 'children'),
