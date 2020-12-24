@@ -51,7 +51,7 @@ def update_graph(my_dropdown):
             trace = go.Bar(x=[dfc.iloc[i].name], y=[dfc.iloc[i].values[0]], name=df.iloc[i].name)
             traces.append(trace)
 
-    layout = go.Layout(
+    graph_layout = go.Layout(
         yaxis=dict(
             range = [.8, .95],
             showgrid=False,
@@ -61,7 +61,7 @@ def update_graph(my_dropdown):
     )
 
     figure = go.Figure(data=traces,
-                       layout=layout
+                       layout=graph_layout
                        )
     
     return figure

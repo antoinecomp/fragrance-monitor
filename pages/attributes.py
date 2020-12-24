@@ -46,21 +46,23 @@ def layout():
     [Input(component_id="perfume-dropdown", component_property="value")]
 )
 def update_graph(my_dropdown):
-    dfc = df.sort_values(by='perceived_benefit', ascending=False)
+    dfc = df.sort_values(by='perceived_benefit', ascending=True)
     traces = []
     for i in range(len(dfc)):
         if dfc.iloc[i].name == my_dropdown:
-            trace_claimed = go.Bar(x=[dfc.iloc[i].values[0]], y=[dfc.iloc[i].values[2]],
-                                   name= dfc.iloc[i].values[0] + ' Claimed')
-            trace_perceived = go.Bar(x=[dfc.iloc[i].values[0]], y=[-dfc.iloc[i].values[1]],
-                                     name= dfc.iloc[i].values[0] + 'Perceived')
+            trace_claimed = go.Bar(y=[dfc.iloc[i].values[0]], x=[dfc.iloc[i].values[2]],
+                                   name= dfc.iloc[i].values[0] + ' Perceived', orientation='h')
+            # trace_perceived = go.Bar(x=[dfc.iloc[i].values[0]], y=[-dfc.iloc[i].values[1]],
+            #                          name= dfc.iloc[i].values[0] + ' Claimed')
             traces.append(trace_claimed)
-            traces.append(trace_perceived)
-    figure={
-        'data': traces,
-        'layout':
-            go.Layout(title='Score des parfums sur les attributs', barmode='stack')
-    }
+            # traces.append(trace_perceived)
+
+    figure = go.Figure(data=traces,
+                       layout=go.Layout(title='Score des parfums sur les attributs',
+                                        barmode='stack')
+                       )
+    # figure.update_traces(marker_color='rgb(158,202,225)', marker_line_color='rgb(8,48,107)',
+    #                   marker_line_width=1.5, opacity=0.6)
 
     return figure
 
